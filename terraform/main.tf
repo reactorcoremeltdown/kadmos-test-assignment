@@ -1,6 +1,6 @@
 terraform {
   backend "local" {
-    path = "/opt/terraform.tfstate"
+    workspace_dir = "/opt/terraform"
   }
   required_providers {
     hcloud = {
