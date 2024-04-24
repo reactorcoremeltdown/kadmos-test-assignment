@@ -1,4 +1,7 @@
 terraform {
+  backend "local" {
+    path = "/opt/terraform.tfstate"
+  }
   required_providers {
     hcloud = {
       source = "hetznercloud/hcloud"
