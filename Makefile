@@ -3,3 +3,6 @@ all: tf_plan
 
 tf_plan:
 	podman run -it -w /mnt -v $(shell pwd)/terraform:/mnt hashicorp/terraform:1.8 plan -var="hcloud_token=$(HCLOUD_TOKEN)"
+
+tf_apply:
+	podman run -it -w /mnt -v $(shell pwd)/terraform:/mnt hashicorp/terraform:1.8 apply -var="hcloud_token=$(HCLOUD_TOKEN)"
