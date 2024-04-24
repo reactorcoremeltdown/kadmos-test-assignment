@@ -22,7 +22,7 @@ steps:
       from_secret: git_sudo
 
 node:
-  machine: garage
+  role: production
 
 ---
 kind: pipeline
@@ -47,7 +47,7 @@ trigger:
   - failure
 
 node:
-  machine: garage
+  role: production
 
 depends_on:
 - default
