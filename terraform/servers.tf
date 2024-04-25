@@ -9,3 +9,8 @@ resource "hcloud_server" "loadbalancer" {
     ipv6_enabled = true
   }
 }
+
+resource "local_file" "ansible_inventory" {
+  filename = "inventory.txt"
+  content = join("\n", ["[loadbalancers]", hcloud_server.loadbalancer.ipv4_address])
+}
