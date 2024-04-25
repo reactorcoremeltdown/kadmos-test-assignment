@@ -16,20 +16,28 @@ steps:
   - git clone $DRONE_GIT_SSH_URL
 - name: plan
   commands:
-  - cd $DRONE_REPO_NAME && echo $GIT_SUDO | sudo -S make HCLOUD_TOKEN=$HCLOUD_TOKEN
+  - cd $DRONE_REPO_NAME && echo $GIT_SUDO | sudo -S make HCLOUD_TOKEN=$HCLOUD_TOKEN TF_HTTP_USER=$TF_HTTP_USER TF_HTTP_PASSWORD=$TF_HTTP_PASSWORD
   environment:
     GIT_SUDO:
       from_secret: git_sudo
     HCLOUD_TOKEN:
       from_secret: hcloud_token
+    TF_HTTP_USER:
+      from_secret: tf_http_user
+    TF_HTTP_PASSWORD:
+      from_secret: tf_http_password
 - name: apply
   commands:
-  - cd $DRONE_REPO_NAME && echo $GIT_SUDO | sudo -S make tf_apply HCLOUD_TOKEN=$HCLOUD_TOKEN
+  - cd $DRONE_REPO_NAME && echo $GIT_SUDO | sudo -S make tf_apply HCLOUD_TOKEN=$HCLOUD_TOKEN TF_HTTP_USER=$TF_HTTP_USER TF_HTTP_PASSWORD=$TF_HTTP_PASSWORD
   environment:
     GIT_SUDO:
       from_secret: git_sudo
     HCLOUD_TOKEN:
       from_secret: hcloud_token
+    TF_HTTP_USER:
+      from_secret: tf_http_user
+    TF_HTTP_PASSWORD:
+      from_secret: tf_http_password
   when:
     target:
     - apply
