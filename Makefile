@@ -4,7 +4,7 @@ all: tf_plan
 tf_plan:
 	test -d /opt/terraform || mkdir /opt/terraform
 	podman run -it \
-		-e "TF_HTTP_USER=$(TF_HTTP_USER)" \
+		-e "TF_HTTP_USERNAME=$(TF_HTTP_USERNAME)" \
 		-e "TF_HTTP_PASSWORD=$(TF_HTTP_PASSWORD)" \
 		-w /mnt -v $(shell pwd)/terraform:/mnt \
 		hashicorp/terraform:1.8 plan \
@@ -12,7 +12,7 @@ tf_plan:
 
 tf_apply:
 	podman run -it \
-		-e "TF_HTTP_USER=$(TF_HTTP_USER)" \
+		-e "TF_HTTP_USERNAME=$(TF_HTTP_USERNAME)" \
 		-e "TF_HTTP_PASSWORD=$(TF_HTTP_PASSWORD)" \
 		-w /mnt -v $(shell pwd)/terraform:/mnt \
 		hashicorp/terraform:1.8 apply -auto_approve \
