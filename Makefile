@@ -7,3 +7,5 @@ tf_plan:
 
 tf_apply:
 	podman run -it -w /mnt -v $(shell pwd)/terraform:/mnt -v /opt/terraform/terraform.tfstate:/mnt/.terraform/terraform.tfstate hashicorp/terraform:1.8 apply -auto-approve -var="hcloud_token=$(HCLOUD_TOKEN)"
+	ls -la terraform/.terraform/
+	cat terraform/.terraform/terraform.tfstate
