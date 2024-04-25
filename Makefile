@@ -17,3 +17,4 @@ tf_apply:
 		-w /mnt -v $(shell pwd)/terraform:/mnt \
 		hashicorp/terraform:1.8 apply -auto-approve \
 		-var="hcloud_token=$(HCLOUD_TOKEN)"
+	cat terraform/inventory.txt
