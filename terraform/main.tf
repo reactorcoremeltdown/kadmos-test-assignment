@@ -1,7 +1,4 @@
 terraform {
-  backend "local" {
-    workspace_dir = "/opt/terraform"
-  }
   required_providers {
     hcloud = {
       source = "hetznercloud/hcloud"
