@@ -38,12 +38,21 @@ ansible_apply:
 		cytopia/ansible:2.13-tools \
 		ansible-playbook -i inventory/inventory.txt playbook.yaml
 
-kubernetes_apply:
+kubernetes_config:
 	test -d /root/.kube || mkdir /root/.kube
 	test -f ansible/k3s.yaml && cat ansible/k3s.yaml > /root/.kube/config
 	chmod 600 /root/.kube/config
 	kubectl get nodes
+
+kubernetes_prometheus:
+	helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+	helm repo update
+	helm install prometheus prometheus-community/kube-prometheus-stack
+
+kubernetes_apply:
 	helm install --namespace=kadmos-test --create-namespace kadmos-test ./kubernetes/kadmos-test
 
-apply: tf_apply ansible_apply kubernetes_apply
+kubernetes_all: kubernetes_config kubernetes_prometheus kubernetes_apply
+
+apply: tf_apply ansible_apply kubernetes_all
 	@echo "Apply complete"
