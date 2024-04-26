@@ -40,7 +40,7 @@ ansible_apply:
 
 kubernetes_apply:
 	test -d /root/.kube || mkdir /root/.kube
-	mv ansible/k3s.yaml /root/.kube/config
+	cat ansible/k3s.yaml > /root/.kube/config
 	kubectl get nodes
 
 apply: tf_apply ansible_apply kubernetes_apply
