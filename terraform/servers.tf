@@ -3,7 +3,7 @@ resource "hcloud_server" "loadbalancer" {
   image       = "debian-12"
   server_type = "cx11"
   ssh_keys = [ hcloud_ssh_key.kadmos.name ]
-  firewall_ids = [ hcloud_firewall.kadmos.id ]
+  firewall_ids = [ hcloud_firewall.https.id, hcloud_firewall.ssh.id ]
   public_net {
     ipv4_enabled = true
     ipv6_enabled = true
@@ -15,7 +15,7 @@ resource "hcloud_server" "kubernetes" {
   image       = "debian-12"
   server_type = "cx11"
   ssh_keys = [ hcloud_ssh_key.kadmos.name ]
-  firewall_ids = [ hcloud_firewall.kadmos.id, hcloud_firewall.kubernetes.id ]
+  firewall_ids = [ hcloud_firewall.http.id, hcloud_firewall.ssh.id, hcloud_firewall.kubernetes.id ]
   public_net {
     ipv4_enabled = true
     ipv6_enabled = true
