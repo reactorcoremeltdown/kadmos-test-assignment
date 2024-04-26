@@ -1,4 +1,4 @@
-OPENSSH_PRIVATE_KEY=$(OPENSSH_PRIVATE_KEY)
+PRIVATE_KEY=$(OPENSSH_PRIVATE_KEY)
 
 all: tf_plan
 	@echo "This is a template repository"
@@ -25,7 +25,7 @@ tf_apply:
 ansible_apply:
 	mkdir -p ansible/.ssh
 	chmod 700 ansible/.ssh
-	echo "$(OPENSSH_PRIVATE_KEY)" > ansible/.ssh/id_rsa
+	echo "$(PRIVATE_KEY)" > ansible/.ssh/id_rsa
 	chmod 400 ansible/.ssh/id_rsa
 	podman run -it \
 		-v $(shell pwd)/ansible:/home/ansible \
