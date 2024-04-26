@@ -47,7 +47,7 @@ kubernetes_config:
 kubernetes_prometheus:
 	helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 	helm repo update
-	helm install prometheus prometheus-community/kube-prometheus-stack
+	helm upgrade --install --namespace=monitoring --create-namespace prometheus prometheus-community/kube-prometheus-stack
 
 kubernetes_apply:
 	helm upgrade --install --namespace=kadmos-test --create-namespace kadmos-test ./kubernetes/kadmos-test
