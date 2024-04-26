@@ -26,7 +26,7 @@ ansible_apply:
 	mkdir -p ansible/.ssh
 	chmod 700 ansible/.ssh
 	mv id_rsa ansible/.ssh
-	chown -R 1000:1000 ansible/.ssh
+	chown -R 1000:1000 ansible
 	chmod 400 ansible/.ssh/id_rsa
 	podman run -it \
 		-e USER=ansible \
