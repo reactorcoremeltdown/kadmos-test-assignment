@@ -24,5 +24,5 @@ resource "hcloud_server" "kubernetes" {
 
 resource "local_file" "ansible_inventory" {
   filename = "inventory.txt"
-  content = join("\n", ["[loadbalancers]", hcloud_server.loadbalancer.ipv4_address, "", "[kubernetes]", hcloud_server.kubernetes.ipv4_address)
+  content = join("\n", ["[loadbalancers]", hcloud_server.loadbalancer.ipv4_address, "", "[kubernetes]", hcloud_server.kubernetes.ipv4_address])
 }
