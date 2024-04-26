@@ -17,3 +17,16 @@
       url: "https://github.com/k3s-io/k3s/releases/download/v1.29.3%2Bk3s1/k3s"
       dest: "/usr/local/bin/k3s"
       mode: "0755"
+  - name: Install K3s service
+    copy:
+      src: files/systemd/k3s.service
+      dest: /etc/systemd/system/k3s.service
+      owner: root
+      group: root
+      mode: "0755"
+  - name: Launch K3s service
+    systemd:
+      name: k3s.service
+      enabled: true
+      state: started
+      daemon_reload: true
