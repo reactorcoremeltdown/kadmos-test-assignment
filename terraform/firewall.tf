@@ -19,3 +19,16 @@ resource "hcloud_firewall" "kadmos" {
     ]
   }
 }
+
+resource "hcloud_firewall" "kubernetes" {
+  name = "kubernetes"
+  rule {
+    direction = "in"
+    port = "6443"
+    protocol = "tcp"
+    source_ips = [
+      "0.0.0.0/0",
+      "::/0"
+    ]
+  }
+}
