@@ -37,5 +37,5 @@
   - name: Insert current host
     replace:
       path: k3s.yaml
-      regexp: "127\.0\.0\.1"
+      regexp: '127\.0\.0\.1'
       replace: inventory_hostname
