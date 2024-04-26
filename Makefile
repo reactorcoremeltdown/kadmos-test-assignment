@@ -1,3 +1,5 @@
+OPENSSH_PRIVATE_KEY=$(OPENSSH_PRIVATE_KEY)
+
 all: tf_plan
 	@echo "This is a template repository"
 
