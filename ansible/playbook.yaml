@@ -33,10 +33,10 @@
   - name: Fetch Kube config
     fetch:
       src: /etc/rancher/k3s/k3s.yaml
-      dest: k3s.yaml
+      dest: /data/k3s.yaml
       flat: true
   - name: Insert current host
     replace:
-      path: k3s.yaml
+      path: /data/k3s.yaml
       regexp: '127\.0\.0\.1'
       replace: inventory_hostname
