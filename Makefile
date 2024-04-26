@@ -50,7 +50,7 @@ kubernetes_prometheus:
 	helm install prometheus prometheus-community/kube-prometheus-stack
 
 kubernetes_apply:
-	helm install --namespace=kadmos-test --create-namespace kadmos-test ./kubernetes/kadmos-test
+	helm upgrade --install --namespace=kadmos-test --create-namespace kadmos-test ./kubernetes/kadmos-test
 
 kubernetes_all: kubernetes_config kubernetes_prometheus kubernetes_apply
 
