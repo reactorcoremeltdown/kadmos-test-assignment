@@ -34,6 +34,7 @@
     fetch:
       src: /etc/rancher/k3s/k3s.yaml
       dest: k3s.yaml
+      flat: true
   - name: Insert current host
     replace:
       path: k3s.yaml
