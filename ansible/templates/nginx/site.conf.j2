@@ -1,0 +1,27 @@
+upstream kubernetes {
+{% for server in groups['kubernetes'] %}
+    server {{ server }}:80;
+{% endfor %}
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    access_log /var/log/nginx/site_access.log;
+    error_log /var/log/nginx/site_error.log;
+
+    server_name _;
+
+    ssl_certificate /etc/nginx/public.crt;
+    ssl_certificate_key /etc/nginx/private.key;
+
+    location / {
+        if ($http_x_case_study != "Kadmos") {
+            return 404;
+        }
+        proxy_pass https://kubernetes; 
+        proxy_set_header Host $http_host;
+    } 
+}
+

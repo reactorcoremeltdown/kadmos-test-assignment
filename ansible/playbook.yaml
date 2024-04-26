@@ -8,6 +8,23 @@
       name: nginx
       state: latest
       update_cache: yes
+  - name: Add nginx config
+    template:
+      src: templates/nginx/site.conf.j2
+      dest: /etc/nginx/sites-enabled/site.conf
+      owner: www-data
+      group: www-data
+      mode: '0644'
+  - name: Copy certificates to server
+    copy:
+      src: files/ssl/
+      dest: /etc/nginx/
+  - name: Test nginx config
+    command: nginx -t
+  - name: Reload nginx
+    systemd:
+      name: nginx.service
+      state: reloaded
 - name: Kubernetes
   hosts: kubernetes
   become: yes
