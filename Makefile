@@ -38,5 +38,9 @@ ansible_apply:
 		cytopia/ansible:2.13-tools \
 		ansible-playbook -i inventory/inventory.txt playbook.yaml
 
-apply: tf_apply ansible_apply
+kubernetes_apply:
+	cat ansible/k3s.yaml
+	kubectl --kubeconfig ansible/k3s.yaml get nodes
+
+apply: tf_apply ansible_apply kubernetes_apply
 	@echo "Apply complete"
