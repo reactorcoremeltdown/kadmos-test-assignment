@@ -28,7 +28,7 @@ steps:
       from_secret: tf_http_password
 - name: apply
   commands:
-  - cd $DRONE_REPO_NAME && echo $GIT_SUDO | sudo -S make apply HCLOUD_TOKEN=$HCLOUD_TOKEN TF_HTTP_USERNAME=$TF_HTTP_USERNAME TF_HTTP_PASSWORD=$TF_HTTP_PASSWORD
+  - cd $DRONE_REPO_NAME && echo "$OPENSSH_PRIVATE_KEY" > id_rsa && echo $GIT_SUDO | sudo -S make apply HCLOUD_TOKEN=$HCLOUD_TOKEN TF_HTTP_USERNAME=$TF_HTTP_USERNAME TF_HTTP_PASSWORD=$TF_HTTP_PASSWORD
   environment:
     GIT_SUDO:
       from_secret: git_sudo

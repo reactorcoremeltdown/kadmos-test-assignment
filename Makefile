@@ -25,10 +25,15 @@ tf_apply:
 ansible_apply:
 	mkdir -p ansible/.ssh
 	chmod 700 ansible/.ssh
-	echo "$(PRIVATE_KEY)" > ansible/.ssh/id_rsa
+	mv id_rsa ansible/.ssh
+	chown -R 1000:1000 ansible/.ssh
 	chmod 400 ansible/.ssh/id_rsa
 	podman run -it \
-		-v $(shell pwd)/ansible:/home/ansible \
+		-e USER=ansible \
+		-e MY_UID=1000 \
+		-e MY_GID=1000 \
+		-v $(shell pwd)/ansible/:/data/ \
+		-v $(shell pwd)/ansible/.ssh/:/home/ansible/.ssh/ \
 		cytopia/ansible:2.13-tools \
 		ansible-playbook -i inventory/inventory.txt playbook.yaml
 
