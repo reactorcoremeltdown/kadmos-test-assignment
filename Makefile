@@ -39,8 +39,9 @@ ansible_apply:
 		ansible-playbook -i inventory/inventory.txt playbook.yaml
 
 kubernetes_apply:
-	cat ansible/k3s.yaml
-	kubectl --kubeconfig ansible/k3s.yaml get nodes
+	test -d /root/.kube || mkdir /root/.kube
+	mv ansible/k3s.yaml /root/.kube/config
+	kubectl get nodes
 
 apply: tf_apply ansible_apply kubernetes_apply
 	@echo "Apply complete"
