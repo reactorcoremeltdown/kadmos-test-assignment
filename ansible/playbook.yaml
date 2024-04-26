@@ -39,6 +39,6 @@
     replace:
       path: /data/k3s.yaml
       regexp: '127\.0\.0\.1'
-      replace: inventory_hostname
+      replace: '{{ inventory_hostname }}'
     delegate_to: localhost
     become: false
