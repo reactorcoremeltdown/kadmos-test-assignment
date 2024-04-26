@@ -40,8 +40,9 @@ ansible_apply:
 
 kubernetes_apply:
 	test -d /root/.kube || mkdir /root/.kube
-	cat ansible/k3s.yaml > /root/.kube/config
+	test -f ansible/k3s.yaml && cat ansible/k3s.yaml > /root/.kube/config
 	kubectl get nodes
+	helm install kadmos-test ./kubernetes/kadmos-test
 
 apply: tf_apply ansible_apply kubernetes_apply
 	@echo "Apply complete"
