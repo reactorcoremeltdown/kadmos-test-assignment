@@ -18,5 +18,5 @@ spec:
       - image: nginx:latest
         name: nginx
         ports:
-        - containerPort: {{ .Values.Port }}
+        - containerPort: {{ .Values.port }}
           name: web

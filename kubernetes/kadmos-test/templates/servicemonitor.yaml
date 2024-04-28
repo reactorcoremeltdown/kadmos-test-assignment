@@ -11,4 +11,4 @@ spec:
     matchLabels:
       app: {{ .Release.Name }}
   endpoints:
-  - port: {{ .Values.Port }}
+  - port: {{ .Values.port }}
