@@ -1,0 +1,16 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    application: {{ .Release.Name }}
+spec:
+  rules:
+  - host: ""
+    http:
+      paths:
+      - backend:
+          serviceName: custom-metrics-consumer
+          servicePort: 80
