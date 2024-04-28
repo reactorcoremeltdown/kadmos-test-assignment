@@ -8,9 +8,10 @@ metadata:
     application: {{ .Release.Name }}
 spec:
   rules:
-  - host: ""
-    http:
+  - http:
       paths:
-      - backend:
-          serviceName: custom-metrics-consumer
+      - path: /
+        pathType: Prefix
+        backend:
+          serviceName: {{ .Release.Name }}
           servicePort: 80
