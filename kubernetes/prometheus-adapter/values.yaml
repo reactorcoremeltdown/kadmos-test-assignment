@@ -132,19 +132,18 @@ rules:
   default: false
 
   custom:
-  - "seriesQuery": |
-     {namespace!="",__name__!~"^container_.*"}
-  "resources":
-    "template": "<<.Resource>>"
-  "name":
-    "matches": "^(.*)_total"
-    "as": ""
-  "metricsQuery": |
-    sum by (<<.GroupBy>>) (
-      irate (
-        <<.Series>>{<<.LabelMatchers>>}[1m]
-      )
-    )
+  - seriesQuery: |
+      traefik_service_requests_total{}
+    resources:
+      template: "<<.Resource>>"
+      overrides:
+        kubernetes_namespace: {resource: "namespace"}
+        kubernetes_pod_name: {resource: "pod"}
+    name:
+      matches: "^(.*)_total"
+      as: "${1}"
+    metricsQuery: |
+      rate(<<.Series>>{<<.LabelMatchers>>}[5m])
 
   # Mounts a configMap with pre-generated rules for use. Overrides the
   # default, custom, external and resource entries
