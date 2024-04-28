@@ -129,7 +129,7 @@ readinessProbe:
 startupProbe: {}
 
 rules:
-  default: true
+  default: false
 
   custom: []
     # - seriesQuery: '{__name__=~"^some_metric_count$"}'
