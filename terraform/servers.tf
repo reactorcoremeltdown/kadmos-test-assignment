@@ -13,7 +13,7 @@ resource "hcloud_server" "loadbalancer" {
 resource "hcloud_server" "kubernetes" {
   name        = "kubernetes"
   image       = "debian-12"
-  server_type = "cx11"
+  server_type = "cx21"
   ssh_keys = [ hcloud_ssh_key.kadmos.name ]
   firewall_ids = [ hcloud_firewall.http.id, hcloud_firewall.ssh.id, hcloud_firewall.kubernetes.id ]
   public_net {
