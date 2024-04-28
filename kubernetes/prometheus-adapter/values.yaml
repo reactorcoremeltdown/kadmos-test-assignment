@@ -33,7 +33,7 @@ customLabels: {}
 prometheus:
   # Value is templated
   url: http://prometheus-server.monitoring.svc.cluster.local
-  port: 9090
+  port: 80
   path: ""
 
 replicas: 1
