@@ -131,14 +131,20 @@ startupProbe: {}
 rules:
   default: false
 
-  custom: []
-    # - seriesQuery: '{__name__=~"^some_metric_count$"}'
-    #   resources:
-    #     template: <<.Resource>>
-    #   name:
-    #     matches: ""
-    #     as: "my_custom_metric"
-    #   metricsQuery: sum(<<.Series>>{<<.LabelMatchers>>}) by (<<.GroupBy>>)
+  custom:
+  - "seriesQuery": |
+     {namespace!="",__name__!~"^container_.*"}
+  "resources":
+    "template": "<<.Resource>>"
+  "name":
+    "matches": "^(.*)_total"
+    "as": ""
+  "metricsQuery": |
+    sum by (<<.GroupBy>>) (
+      irate (
+        <<.Series>>{<<.LabelMatchers>>}[1m]
+      )
+    )
 
   # Mounts a configMap with pre-generated rules for use. Overrides the
   # default, custom, external and resource entries
