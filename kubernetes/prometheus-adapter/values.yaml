@@ -32,7 +32,7 @@ customLabels: {}
 # Url to access prometheus
 prometheus:
   # Value is templated
-  url: http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local
+  url: http://prometheus-server.monitoring.svc.cluster.local
   port: 9090
   path: ""
 
