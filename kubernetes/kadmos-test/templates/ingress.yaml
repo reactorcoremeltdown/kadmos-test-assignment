@@ -5,7 +5,7 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
   labels:
-    application: {{ .Release.Name }}
+    app: {{ .Release.Name }}
 spec:
   rules:
   - http:

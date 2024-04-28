@@ -5,12 +5,12 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
   labels:
-    application: {{ .Release.Name }}
+    app: {{ .Release.Name }}-nginx
 spec:
   ports:
   - port: 80
     protocol: TCP
     targetPort: {{ .Values.port }}
   selector:
-    application: {{ .Release.Name }}
+    app: {{ .Release.Name }}-nginx
   type: ClusterIP

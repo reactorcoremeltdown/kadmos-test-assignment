@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Release.Name }}-nginx
 spec:
   replicas: 1
   selector:
