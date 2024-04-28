@@ -135,7 +135,6 @@ rules:
   - seriesQuery: |
       traefik_service_requests_total{}
     resources:
-      template: "<<.Resource>>"
       overrides:
         kubernetes_namespace: {resource: "namespace"}
         kubernetes_pod_name: {resource: "pod"}
