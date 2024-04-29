@@ -40,7 +40,6 @@ spec:
         - --aws-external-metrics
         - --aws-region={{ .Values.aws.region }}
         {{- end}}
-        - --v={{ .Values.logLevel }}
         {{- if .Values.prometheus.url }}
         - --prometheus-server={{ .Values.prometheus.url }}
         {{- end}}
