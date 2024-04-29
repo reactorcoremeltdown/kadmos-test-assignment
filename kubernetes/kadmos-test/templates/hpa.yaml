@@ -1,0 +1,28 @@
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ .Release.Name }}
+  annotations:
+    metric-config.external.rps.prometheus/prometheus-server: http://prometheus-server.monitoring.svc.cluster.local
+    metric-config.external.rps.prometheus/query: |
+      rate(traefik_service_requests_total{service="kadmos-test-kadmos-test-80@kubernetes"}[5m])
+    metric-config.external.rps.prometheus/interval: "5m"
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ .Release.Name }}
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: External
+    external:
+      metric:
+        name: rps
+        selector:
+          matchLabels:
+            type: prometheus
+      target:
+        type: AverageValue
+        averageValue: "15"

@@ -1,5 +1,5 @@
 apiVersion: v1
 name: kadmos-test
-version: 1.2.1
+version: 1.3.0
 appVersion: 1.0.0
 description: A simple helm chart that deploys an autoscaling application
