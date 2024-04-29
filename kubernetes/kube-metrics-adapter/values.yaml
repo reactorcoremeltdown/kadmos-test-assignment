@@ -13,7 +13,7 @@ enableHostNetwork: false
 
 # Url to access prometheus
 prometheus:
-  url:
+  url: http://prometheus-server.monitoring.svc.cluster.local
 
 replicas: 1
 
