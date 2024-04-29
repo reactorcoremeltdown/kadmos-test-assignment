@@ -13,8 +13,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: {{ .Release.Name }}
-  minReplicas: 1
-  maxReplicas: 10
+  minReplicas: {{ .Values.autoscaling.min }}
+  maxReplicas: {{ .Values.autoscaling.max }}
   metrics:
   - type: External
     external:
@@ -25,4 +25,4 @@ spec:
             type: prometheus
       target:
         type: AverageValue
-        averageValue: "15"
+        averageValue: {{ .Values.autoscaling.rps }}
